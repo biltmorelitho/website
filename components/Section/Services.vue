@@ -4,14 +4,14 @@
   </h2>
 
   <ul class="text-center text-[19px] max-w-3xl">
-    <li><Icon name="streamline:business-card" /> Business Cards</li>
-    <li><Icon name="gala:brochure" /> Brochures</li>
-    <li><Icon name="hugeicons:news" /> Newsletters</li>
-    <li><Icon name="hugeicons:stationery" /> Stationery</li>
-    <li><Icon name="ri:booklet-line" /> Booklets</li>
-    <li><Icon name="solar:map-linear" /> Pamphlets</li>
-    <li><Icon name="carbon:printer" /> Digital & Offset Printing</li>
-    <li><Icon name="fa:wpforms" /> Continuous & NCR Forms</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="streamline:business-card" /> Business Cards</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="gala:brochure" /> Brochures</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="hugeicons:news" /> Newsletters</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="hugeicons:stationery" /> Stationery</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="ri:booklet-line" /> Booklets</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="solar:map-linear" /> Pamphlets</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="carbon:printer" /> Digital & Offset Printing</li>
+    <li class="flex justify-center items-center gap-1"><Icon name="fa:wpforms" /> Continuous & NCR Forms</li>
   </ul>
 </template>
 

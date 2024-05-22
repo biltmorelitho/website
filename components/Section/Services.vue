@@ -16,10 +16,10 @@
 
   <div class="flex flex-col justify-center items-center gap-1 my-6">
     <strong>Contact</strong>
-    <strong>
+    <strong class="flex justify-center items-center gap-1">
       <Icon class="rotate-[-6deg]" name="fxemoji:backofenvelope" /> <a class="hover:animate-disco" target="_blank" rel="noopener noreferrer" href="mailto:biltmorelitho@gmail.com"><b>biltmorelitho@gmail.com</b></a>
     </strong>
-    <strong><Icon name="twemoji:telephone-receiver" /> (602) 263-5637</strong>
+    <strong class="flex justify-center items-center gap-1"><Icon name="twemoji:telephone-receiver" /> (602) 263-5637</strong>
   </div>
   
 </template>

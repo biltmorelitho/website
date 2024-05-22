@@ -1,6 +1,6 @@
 <template>
   <div :class="{'dark': darkMode}">
-    <div class="bg-white text-primary dark:bg-dim-950 dark:text-darkPrimary transition-main">
+    <div class="bg-white text-primary dark:bg-dim-950 dark:text-darkPrimary transition-main text-3xl max-md:text-2xl max-sm:text-[19px]">
       <Header @scrollToSection="scrollToSection" />
 
       <Head>
@@ -25,7 +25,7 @@
           <LazySectionContact v-if="loadComponents" />
         </section>
 
-        <div class="fixed right-0 bottom-20 rotate-[-90deg] select-none transition-main text-dim-700 hover:text-dim-950 dark:text-dim-400 dark:hover:text-dim-200 max-sm:right-[-20px]">
+        <div class="text-2xl fixed -right-7 bottom-24 rotate-[-90deg] select-none transition-main text-black hover:text-dim-950 dark:text-white dark:hover:text-dim-200 max-sm:text-[19px]">
           <span v-if="activeSection < offsets.length - 1" class="p-1 cursor-pointer" @click="scrollToSection(activeSection + 1, true)">
             <Icon name="grommet-icons:form-previous" /> Scroll Down
           </span>

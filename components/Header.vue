@@ -1,8 +1,9 @@
 <template>
-  <header class="fixed z-50 w-full flex items-center justify-between p-5 text-xl text-primary select-none">
+  <header class="fixed z-50 w-full flex items-center justify-between p-5 text-x select-none">
     
-    <nuxt-link to="/" class="" @click="scrollToSection(0, true)">
+    <nuxt-link to="/" class="flex items-center gap-2 text-2xl" @click="scrollToSection(0, true)">
       <img height="50" width="61" src="/logo.png" alt="Biltmore Litho Logo" />
+      <b>Biltmore Litho</b>
     </nuxt-link>
 
     <div class="relative w-[52px]">

@@ -15,21 +15,14 @@ export default {
     },
     extend: {
       colors: {
-        primary: "#000000",
-        darkPrimary: "#ffffff",
-        dim: {
-          50: "#fafaf9",
-          100: "#f5f5f4",
-          200: "#e7e5e4",
-          300: "#d6d3d1",
-          400: "#a8a29e",
-          500: "#78716c",
-          600: "#57534e",
-          700: "#44403c",
-          800: "#292524",
-          900: "#1c1917",
-          950: "#0c0a09",
-        },
+        "primary": "#1976D2",
+        "primary-dark": "#1565C0",
+        "background": "#FFFFFF",
+        "gray-light": "#F5F5F5",
+        "gray-medium": "#757575",
+        "text": "#212121",
+        "blue-light": "#BBDEFB",
+        "blue-lighter": "#E3F2FD",
       },
       fontFamily: {
         sans: ['Karla', 'Arial', 'Helvetica', 'sans-serif', 'Georgia', 'serif'],
@@ -43,6 +36,10 @@ export default {
         glow: 'glow 1s ease-in-out infinite alternate',
         disco: 'disco 2s ease-in-out infinite',
         blink: 'blink 4.2s infinite'
+      },
+      boxShadow: {
+        'custom': '0px 10px 10px rgba(0, 0, 0, 0.4)',
+        'custom-hover': '0px 20px 20px rgba(0, 0, 0, 0.4)',
       },
       keyframes: {
         glow: {
@@ -71,4 +68,3 @@ export default {
   },
   plugins: [],
 }
-

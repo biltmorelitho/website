@@ -12,7 +12,7 @@
       </Head>
 
       <main>
-        <section class="gap-5">
+        <section class="mt-4 gap-5">
           <div class="flex flex-col items-center">
             <img class="h-[180px]" src="/lg-logo.png" alt="Biltmore Litho Logo" />
             <h1 class="font-bold mt-4 text-center text-5xl max-sm:text-5xl">Biltmore Litho</h1>
@@ -56,17 +56,17 @@
 
         <section>
           <button class="rotate-[7deg] flex flex-col justify-between card text-xs text-black cursor-pointer z-10 bg-[#f4f1eb] h-[200px] w-[350px] pt-3 p-2 shadow-custom hover:shadow-custom-hover transition-shadow duration-400">
-            <div class="flex items-center justify-between gap-1 text-2xl">
+            <div class="w-full flex items-center justify-between gap-1 text-2xl">
               <div class="text-xs">biltmorelitho.com</div>
               <div class="text-xs">602 263-5637</div>
             </div>
 
-            <div class="flex flex-col items-center">
+            <div class="w-full flex flex-col items-center">
               <img height="50" width="61" src="/logo.png" alt="Biltmore Litho Logo" />
               <b class="text-primary text-xl">Biltmore Litho</b>
             </div>
             
-            <div>3612 North 7th Street Phoenix, Arizona 85014</div>
+            <div class="w-full text-center">3612 North 7th Street Phoenix, Arizona 85014</div>
           </button>
         </section>
       </main>
@@ -76,7 +76,8 @@
 
 <style>
 section {
-  @apply h-screen flex flex-col items-center justify-center max-w-[calc(100vw-50px)] mx-auto;
+  @apply flex flex-col items-center justify-center max-w-[calc(100vw-50px)] mx-auto;
+  min-height: 100vh;
 }
 
 .button {

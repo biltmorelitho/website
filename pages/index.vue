@@ -48,7 +48,7 @@
               <li>biltmorelitho@gmail.com</li>
               <li class="pt-2">3612 North 7th Street </li>
               <li>Phoenix, Arizona 85014</li>
-              <li class="pt-2">Phone: 602 263-5637</li>
+              <li class="pt-2">602 263-5637</li>
             </ul>
           </div>
         </section>

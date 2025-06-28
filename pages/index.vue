@@ -20,16 +20,12 @@
           <p class="max-w-[440px] text-black text-center text-2xl">
             "At Biltmore Litho, excellence is our foundation. We deliver exceptional personal service, timely results, premium quality, and competitive pricing. Our commitment to you is absolute: if any error occurs, we'll rectify it immediately with a priority reprint at no cost—no questions asked."
           </p>
-
-          <nuxt-link to="https://papco.dcpromosite.com/p/catalog" target="_blank" rel="noopener noreferrer">
-            <button class="button" role="button">View Promotional</button>
-          </nuxt-link>
         </section>
 
         <section>
           <h2 class="mt-10 mb-4 text-5xl font-bold text-center">Services</h2>
 
-          <ul class="text-3xl text-black text-center">
+          <ul class="text-3xl text-black text-center pb-8">
             <li>Business Cards</li>
             <li>Brochures</li>
             <li>Newsletters</li>
@@ -39,6 +35,10 @@
             <li>Digital & Offset Printing</li>
             <li>Continuous & NCR Forms</li>
           </ul>
+
+          <nuxt-link to="https://papco.dcpromosite.com/p/catalog" target="_blank" rel="noopener noreferrer">
+            <button class="button" role="button">View Promotional</button>
+          </nuxt-link>
         </section>
 
         <section>
@@ -68,15 +68,27 @@
             <div class="w-full text-center">3612 North 7th Street Phoenix, Arizona 85014</div>
           </button>
         </section>
+
+        <div class="text-3xl font-bold fixed right-[-30px] bottom-40 rotate-[-90deg] select-none transition-main text-dim-700 hover:text-dim-950 dark:text-dim-400 dark:hover:text-dim-200 max-sm:right-[-20px]">
+          <span v-if="activeSection < offsets.length - 1" class="p-1 cursor-pointer" @click="scrollToSection(activeSection + 1, true)">
+            <Icon name="grommet-icons:form-previous" /> Scroll Down
+          </span>
+          <span v-else class="p-1 cursor-pointer" @click="scrollToSection(0, true)">
+            Scroll To Top <Icon name="grommet-icons:form-next" />
+          </span>
+        </div>
       </main>
     </div>
   </div>
 </template>
 
 <style>
+body {
+  overflow: hidden;
+}
+
 section {
-  @apply flex flex-col items-center justify-center max-w-[calc(100vw-50px)] mx-auto;
-  min-height: 100vh;
+  @apply h-screen flex flex-col items-center justify-center max-w-[calc(100vw-50px)] mx-auto;
 }
 
 .button {
@@ -115,5 +127,153 @@ section {
 </style>
 
 <script setup>
+const store = useStore()
+let inMove = false
+const moveDelay = 400
+let activeSection = ref(0)
+let offsets = ref([])
+let loadComponents = ref(false)
+let touchStartY = 0
 
+//Adds seo en language to the html element
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  }
+})
+
+onMounted(() => {
+  calculateSectionOffsets()
+  window.addEventListener('DOMMouseScroll', handleMouseWheelDOM);  // Mozilla Firefox
+  window.addEventListener('mousewheel', handleMouseWheel, { passive: false }); // Other browsers
+  window.addEventListener('touchstart', touchStart, { passive: false }); // mobile devices
+  window.addEventListener('touchmove', touchMove, { passive: false }); // mobile devices
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('DOMMouseScroll', handleMouseWheelDOM); // Mozilla Firefox
+  window.removeEventListener('mousewheel', handleMouseWheel, { passive: false });  // Other browsers
+  window.removeEventListener('touchstart', touchStart); // mobile devices
+  window.removeEventListener('touchmove', touchMove); // mobile devices
+})
+
+ /**
+ * Calculates the absolute offsets of each section on the page and pushes it into the offsets array
+ */
+function calculateSectionOffsets() {
+  let sections = document.getElementsByTagName('section')
+  let length = sections.length
+  
+  for(let i = 0; i < length; i++) {
+    let sectionOffset = sections[i].offsetTop
+    offsets.value.push(sectionOffset)
+  }
+}
+
+/**
+ * Handle the 'mousewheel' event for other browsers
+ */
+function handleMouseWheel(e) {
+  if (e.wheelDelta < 30 && !inMove)
+    moveUp()
+  else if (e.wheelDelta > 30 && !inMove)
+    moveDown()
+
+  e.preventDefault()
+  return false
+}
+
+/**
+ * Handle the 'DOMMouseScroll' event for Firefox
+*/
+function handleMouseWheelDOM(e) {
+  if (e.detail > 0 && !inMove) {
+    moveUp()
+  } else if (e.detail < 0 && !inMove) {
+    moveDown()
+  }
+  
+  return false
+}
+
+function moveDown() {
+  inMove = true
+  activeSection.value--
+    
+  if(activeSection.value < 0) 
+    activeSection.value = 0
+    
+  scrollToSection(activeSection.value, true)
+}
+
+function moveUp() {
+  inMove = true
+  activeSection.value++
+    
+  if(activeSection.value > offsets.value.length - 1) 
+    activeSection.value = offsets.value.length - 1
+    
+  scrollToSection(activeSection.value, true)
+}
+
+/**
+ * Scrolls to the passed section id if the section exists and the delay is over
+*/
+function scrollToSection(id, force = false) {
+  if(inMove && !force) 
+    return false
+  
+  activeSection.value = id
+  inMove = true
+  // if(!hasBeenSeen.value.includes(id)) {
+  //   hasBeenSeen.value.push(id)
+  // }
+
+  loadComponents.value = true
+  
+  // get section and scroll into view if it exists
+  let section = document.getElementsByTagName('section')[id]
+  if(section) {
+    document.getElementsByTagName('section')[id].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest', 'scroll-behavior': '(0.88,0,0.265,1)' })
+  }
+  
+  setTimeout(() => {
+    inMove = false
+  }, moveDelay)
+}
+
+/**
+ * Handles the 'touchstart' event on mobile devices
+*/
+function touchStart(e) {
+  e.preventDefault()
+
+  const clickEvent = new MouseEvent('click', {
+    bubbles: true,
+    cancelable: true,
+    view: window
+  })
+  
+  e.target.dispatchEvent(clickEvent)
+  touchStartY = e.touches[0].clientY
+}
+
+/**
+ * Handles the 'touchmove' event on mobile devices
+*/
+function touchMove(e) {
+  if(inMove) 
+    return false
+  e.preventDefault()
+  
+  const currentY = e.touches[0].clientY
+  
+  if(touchStartY < currentY)
+    moveDown()
+  else
+    moveUp()
+  
+  touchStartY = 0
+  return false
+}
 </script>
